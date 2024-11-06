@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Maintenance Request</title>
+</head>
+
+<body>
+    <div class="maintenance-request-container">
+        <h2>Maintenance Request</h2>
+        <form id="maintenanceRequestForm" onsubmit="submitRequest();">
+            <label for="apartmentNumber">Apartment Number:</label>
+            <select id="apartmentNumber" name="apartmentNumber" required>
+                <!-- Dynamically populate options based on stored tenant information -->
+                <script>
+                    var tenantInfo = JSON.parse(sessionStorage.getItem('tenantInfo'));
+                    if (tenantInfo) {
+                         var apartmentNumberSelect = document.getElementById('apartmentNumber');
+                         var option = document.createElement('option');
+                         option.value = tenantInfo.appartmentnumber;
+                         option.text = tenantInfo.appartmentnumber;
+                         apartmentNumberSelect.add(option);
+                         apartmentNumberSelect.disabled = true; // Disable selection since there's only one option
+                    }
+                </script>
+            </select>
+            <label for="areaOfProblem">Area of Problem:</label>
+            <select id="areaOfProblem" name="areaOfProblem" required>
+    		<option value="Kitchen">Kitchen</option>
+   		<option value="Bathroom">Bathroom</option>
+                <option value="Living Room">Living Room</option>
+                <option value="Bedroom">Bedroom</option>
+            </select>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="photo">Optional Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*">
+
+            <button type="submit">Submit Request</button>
+	    <div class="logout-button">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

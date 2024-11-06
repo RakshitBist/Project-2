@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Requests Update</title>
+</head>
+<body>
+    <div class="requests-update-container">
+        <h2>Requests Update</h2>
+
+        <!-- Filters Section -->
+        <div class="filters">
+            <label for="filterApartment">Filter by Apartment Number:</label>
+            <select id="filterApartment" name="filterApartment">
+                <option value="">All</option>
+                <!-- Add options for apartment numbers 101 to 110 -->
+                <option value="101">101</option>
+                <option value="102">102</option>
+                <option value="103">103</option>
+                <option value="104">104</option>
+                <option value="105">105</option>
+                <option value="106">106</option>
+                <option value="107">107</option>
+                <option value="108">108</option>
+                <option value="109">109</option>
+                <option value="110">110</option>
+	    </select>
+
+            <label for="filterArea">Filter by Area:</label>
+            <select id="filterArea" name="filterArea">
+    		<option value="">All</option>
+    		<option value="Kitchen">Kitchen</option>
+    		<option value="Bathroom">Bathroom</option>
+    		<option value="Living Room">Living Room</option>
+    		<option value="Bedroom">Bedroom</option>
+    		<!-- Add more options as needed -->
+	    </select>
+
+            <label for="filterDate">Filter by Date Range:</label>
+            <input type="date" id="filterStartDate" name="filterStartDate" oninput="filterRequests()">
+            <input type="date" id="filterEndDate" name="filterEndDate" oninput="filterRequests()">
+
+            <label for="filterStatus">Filter by Status:</label>
+            <select id="filterStatus" name="filterStatus" onchange="filterRequests()">
+                <option value="">All</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+
+<!-- Requests List Section -->
+<div class="requests-list">
+    <table>
+        <thead>
+            <tr>
+                <th>Request ID</th>
+                <th>Apartment Number</th>
+                <th>Area</th>
+                <th>Description</th>
+                <th>Date/Time</th>
+                <th>Photo</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="requestsTableBody">
+            <!-- Requests will be dynamically populated here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete Request Section -->
+<div class="delete-request">
+    <label for="deleteRequestId">Request ID to Delete:</label>
+    <input type="text" id="deleteRequestId" name="deleteRequestId">
+
+    <button onclick="deleteRequest()">Delete Request</button>
+    <button onclick="deleteAllRequests()">Delete All Requests</button>
+</div>
+
+<!-- Update Status Section -->
+<div class="update-status">
+    <label for="selectedRequestId">Selected Request ID:</label>
+    <input type="text" id="selectedRequestId" name="selectedRequestId" readonly>
+
+    <label for="newStatus">New Status:</label>
+    <select id="newStatus" name="newStatus">
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+    </select>
+
+    <button onclick="updateStatus()">Update Status</button>
+</div>
+
+<div class="logout-button">
+    <button onclick="logout()">Logout</button>
+</div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
